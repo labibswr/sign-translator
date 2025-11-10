@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+env/
+venv/
+ENV/
+asl-env/
+
+# Data files
+data/*.csv
+data/*.npy
+
+# Model files (optional - models can be large)
+models/*.h5
+models/*.png
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Analysis outputs
+analysis/
