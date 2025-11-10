@@ -1,6 +1,5 @@
 """
 Data validation and analysis script.
-Run this to check your collected data quality before training.
 """
 import pandas as pd
 import numpy as np
@@ -38,7 +37,7 @@ def analyze_data():
         print(missing[missing > 0])
     
     # Analyze sign distribution
-    print(f"\n📊 Sign Distribution:")
+    print(f"\n Sign Distribution:")
     sign_counts = df['sign'].value_counts().sort_index()
     print(sign_counts)
     
@@ -142,7 +141,7 @@ def analyze_data():
     plt.close()
     
     # Recommendations
-    print(f"\n💡 Recommendations:")
+    print(f"\n Recommendations:")
     recommendations = []
     
     if sign_counts.min() < SAMPLES_PER_SIGN * 0.8:
@@ -156,7 +155,7 @@ def analyze_data():
         recommendations.append(f"   - {invalid_landmarks} invalid samples detected. Review data collection")
     
     if len(recommendations) == 0:
-        print("   ✅ Data looks good! Ready for training.")
+        print("  Data looks good! Ready for training.")
     else:
         for rec in recommendations:
             print(rec)

@@ -18,6 +18,9 @@ data/*.npy
 models/*.h5
 models/*.png
 
+# Exclude notebooks used to build model, all code for training and validation are recorded in Python files
+*.ipynb
+
 # IDE
 .vscode/
 .idea/
