@@ -166,16 +166,27 @@ class DataPreprocessor:
         """
         print("Loading data...")
         features, labels = self.load_data()
+        print(f"  Loaded {len(features)} features and {len(labels)} labels")
+        assert len(features) == len(labels), f"Mismatch: {len(features)} features vs {len(labels)} labels"
         
         print("Preprocessing features...")
         processed_features = self.preprocess_features(features)
+        print(f"  Processed features shape: {processed_features.shape}")
         
         print("Encoding labels...")
         encoded_labels = self.encode_labels(labels)
+        print(f"  Encoded labels shape: {encoded_labels.shape}")
+        
+        # Replicate labels to match augmented features (3 samples per original: 1 original + 2 augmented)
+        # Each label needs to be repeated 3 times to match the feature augmentation
+        num_augmentations = 3  # 1 original + 2 augmented
+        replicated_labels = np.repeat(encoded_labels, num_augmentations)
+        print(f"  Replicated labels shape: {replicated_labels.shape}")
+        print(f"  Shapes match: {processed_features.shape[0] == replicated_labels.shape[0]}")
         
         print("Splitting data...")
         X_train, X_val, X_test, y_train, y_val, y_test = self.split_data(
-            processed_features, encoded_labels
+            processed_features, replicated_labels
         )
         
         print(f"Data prepared:")
